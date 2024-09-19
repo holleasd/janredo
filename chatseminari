@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desbloquear Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 300px;
+        }
+        #chat, #message {
+            display: none;
+            margin-top: 20px;
+        }
+        input[type="text"], input[type="text"] {
+            padding: 10px;
+            width: 100%;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #chatBox {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+        }
+        #messageInput {
+            width: calc(100% - 24px);
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Introduce el Código</h2>
+    <input type="text" id="codeInput" placeholder="Escribe el código aquí">
+    <button onclick="validateCode()">Enviar</button>
+
+    <div id="message">
+        <h3>Código correcto</h3>
+        <p>¡El chat ha sido desbloqueado!</p>
+    </div>
+
+    <!-- Chat Box -->
+    <div id="chat">
+        <div id="chatBox"></div>
+        <input type="text" id="messageInput" placeholder="Escribe tu mensaje aquí">
+        <button onclick="sendMessage()">Enviar Mensaje</button>
+    </div>
+</div>
+
+<script>
+    // Código correcto para desbloquear el chat
+    const correctCode = "lacarademaiaia";
+
+    function validateCode() {
+        const code = document.getElementById('codeInput').value;
+
+        if (code === correctCode) {
+            document.getElementById('message').style.display = 'block';
+            document.getElementById('chat').style.display = 'block';
+        } else {
+            alert("Código incorrecto, por favor intenta de nuevo.");
+        }
+    }
+
+    function sendMessage() {
+        const chatBox = document.getElementById('chatBox');
+        const messageInput = document.getElementById('messageInput');
+        const message = messageInput.value;
+
+        if (message.trim() !== "") {
+            // Añade el mensaje al chat
+            const newMessage = document.createElement('p');
+            newMessage.textContent = `Tú: ${message}`;
+            chatBox.appendChild(newMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Limpia el campo de entrada de mensaje
+            messageInput.value = "";
+        }
+    }
+</script>
+
+</body>
+</html>
